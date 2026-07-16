@@ -3,5 +3,6 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/aihub
 
-server:
-  port: 8080
+jwt:
+  secret: VGhpc0lzQVN1cGVyU2VjdXJlQmFzZTY0S2V5Rm9yRW50ZXJwcmlzZUFJS25vd2xlZGdlSHViMTIzNDU2Nzg5MDEyMzQ=
+  expiration: 86400000
