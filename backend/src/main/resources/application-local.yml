@@ -2,6 +2,13 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/aihub
+  ai:
+    openai:
+      api-key: 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
+      chat:
+        options:
+          model: gpt-4.1
+          temperature: 0.7
 
 jwt:
   secret: VGhpc0lzQVN1cGVyU2VjdXJlQmFzZTY0S2V5Rm9yRW50ZXJwcmlzZUFJS25vd2xlZGdlSHViMTIzNDU2Nzg5MDEyMzQ=

@@ -1,8 +1,7 @@
 package com.rishi.aihub.features.admin.controller;
 
 import com.rishi.aihub.common.constants.ApiVersion;
-import com.rishi.aihub.common.response.ApiResponse;
-import com.rishi.aihub.common.response.ResponseBuilder;
+import com.rishi.aihub.common.response.BaseResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthController {
 
     @GetMapping(ApiVersion.API + "/health")
-    public ResponseEntity<ApiResponse<String>> health() {
+    public ResponseEntity<BaseResponse<String>> health() {
 
         return ResponseEntity.ok(
-                ResponseBuilder.success(
+                BaseResponse.success(
                         "Enterprise AI Knowledge Hub",
                         "Application is running successfully"
                 )

@@ -1,6 +1,6 @@
 package com.rishi.aihub.features.auth.service.impl;
 
-import com.rishi.aihub.exception.BusinessException;
+import com.rishi.aihub.common.exception.BusinessException;
 import com.rishi.aihub.features.auth.dto.request.LoginRequest;
 import com.rishi.aihub.features.auth.dto.request.RegisterRequest;
 import com.rishi.aihub.features.auth.dto.response.AuthResponse;

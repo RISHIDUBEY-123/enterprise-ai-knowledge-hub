@@ -31,17 +31,18 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/api/v1/auth/**",
-                                "/api/v1/health",
-                                "/swagger-ui/**",
-                                "/swagger-ui.html",
-                                "/v3/api-docs/**",
-                                "/actuator/health")
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated())
+                        .authorizeHttpRequests(auth -> auth
+                                .requestMatchers(
+                                        "/api/v1/auth/**",
+                                        "/api/v1/health",
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html",
+                                        "/v3/api-docs/**",
+                                        "/actuator/**"
+                                )
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated())
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(
                         jwtAuthenticationFilter,

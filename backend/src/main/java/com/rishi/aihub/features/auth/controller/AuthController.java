@@ -1,8 +1,7 @@
 package com.rishi.aihub.features.auth.controller;
 
 import com.rishi.aihub.common.constants.ApiVersion;
-import com.rishi.aihub.common.response.ApiResponse;
-import com.rishi.aihub.common.response.ResponseBuilder;
+import com.rishi.aihub.common.response.BaseResponse;
 import com.rishi.aihub.features.auth.dto.request.LoginRequest;
 import com.rishi.aihub.features.auth.dto.request.RegisterRequest;
 import com.rishi.aihub.features.auth.dto.response.AuthResponse;
@@ -20,13 +19,13 @@ public class AuthController {
 
     private final AuthService authService;
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<AuthResponse>> login(
+    public ResponseEntity<BaseResponse<AuthResponse>> login(
             @Valid @RequestBody LoginRequest request) {
 
         AuthResponse response = authService.login(request);
 
         return ResponseEntity.ok(
-                ResponseBuilder.success(
+                BaseResponse.success(
                         response,
                         "Login successful."
                 )
@@ -34,13 +33,28 @@ public class AuthController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<ApiResponse<UserProfileResponse>> me() {
+    public ResponseEntity<BaseResponse<UserProfileResponse>> me() {
 
         return ResponseEntity.ok(
-                ResponseBuilder.success(
+                BaseResponse.success(
                         authService.getCurrentUser(),
                         "Current user fetched successfully."
                 )
+        );
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<BaseResponse<Void>> register(
+            @Valid @RequestBody RegisterRequest request) {
+
+        authService.register(request);
+
+        return ResponseEntity.ok(
+                BaseResponse.<Void>builder()
+                        .timestamp(java.time.Instant.now())
+                        .success(true)
+                        .message("User registered successfully.")
+                        .build()
         );
     }
 
