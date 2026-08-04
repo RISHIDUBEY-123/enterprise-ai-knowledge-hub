@@ -1,11 +1,13 @@
 package com.rishi.aihub.features.knowledgebase.controller;
 
+import com.rishi.aihub.common.response.BaseResponse;
 import com.rishi.aihub.features.knowledgebase.dto.request.CreateKnowledgeBaseRequest;
 import com.rishi.aihub.features.knowledgebase.dto.response.KnowledgeBaseResponse;
 import com.rishi.aihub.features.knowledgebase.service.KnowledgeBaseService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,9 +28,15 @@ public class KnowledgeBaseController {
     }
 
     @GetMapping
-    public List<KnowledgeBaseResponse> getAll() {
+    public ResponseEntity<BaseResponse<List<KnowledgeBaseResponse>>> getAll() {
 
-        return knowledgeBaseService.getAll();
+        return ResponseEntity.ok(
+                BaseResponse.success(
+                        knowledgeBaseService.getAll(),
+                        "Knowledge bases fetched successfully."
+                )
+        );
+
     }
 
     @GetMapping("/{id}")
